@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>TVGo Call | Secure Peer-to-Peer Calling</title>
+    <meta name="description" content="Instant, private video and voice calling right in your browser. End-to-end encrypted, zero logs, no app installation required.">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta property="og:image" content="https://call.tvgo.site/tvgo-call-icon.png">
+    <meta property="twitter:image" content="https://call.tvgo.site/tvgo-call-icon.png">
+    <!-- FontAwesome 6 Free CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ============================================== -->
+    <!-- LANDING PAGE & LOBBY VIEW                      -->
+    <!-- ============================================== -->
+    <div id="landingWrapper" class="landing-wrapper">
+        <!-- Navigation Header -->
+        <header class="site-header">
+            <div class="nav-container">
+                <a href="/" class="nav-brand">
+                    <img src="/tvgo-call-logo.png" alt="TVGo Call" class="brand-logo-img">
+                </a>
+
+                <nav class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#security">Security</a>
+                    <a href="#faq">FAQ</a>
+                </nav>
+
+                <div class="nav-actions">
+                    <a href="#launch-call" class="btn-nav-cta">
+                        <i class="fa-solid fa-video"></i>
+                        <span>Start Call</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section" id="launch-call">
+            <div class="hero-glow hero-glow-1"></div>
+            <div class="hero-glow hero-glow-2"></div>
+
+            <div class="hero-container">
+                <!-- Hero Left Content -->
+                <div class="hero-content">
+                    <div class="security-badge">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>End-to-End Encrypted WebRTC</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        Private, Instant Video & Voice Calls.
+                        <span class="gradient-text">Zero Logs. No App Needed.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Connect directly from device to device with crystal-clear audio and video. 
+                        Your media never touches our server. No registration, no tracking, 100% anonymous.
+                    </p>
+
+                    <!-- Trust Stats / Highlights -->
+                    <div class="hero-highlights">
+                        <div class="highlight-item">
+                            <i class="fa-solid fa-lock"></i>
+                            <span>DTLS-SRTP E2EE</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>Zero Server Lag</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fa-solid fa-ban"></i>
+                            <span>No Sign-up</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                            <span>Mobile & Desktop</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Right: Interactive Call Launcher Card -->
+                <div class="hero-card-col">
+                    <div class="lobby-card">
+                        <div class="card-header-badge">
+                            <i class="fa-solid fa-circle-dot live-dot"></i>
+                            <span>Instant Room Launcher</span>
+                        </div>
+
+                        <div class="card-title-group">
+                            <h3>Start a Private Call</h3>
+                            <p>Choose your mode and share the room code</p>
+                        </div>
+
+                        <!-- Mode Selector -->
+                        <div class="mode-selection-group">
+                            <span class="selection-title">Select Call Mode</span>
+                            <div class="call-type-selector">
+                                <label class="radio-label active" id="labelVideoMode">
+                                    <input type="radio" name="callMode" value="video" checked>
+                                    <i class="fa-solid fa-video"></i>
+                                    <span>Video Call</span>
+                                </label>
+                                <label class="radio-label" id="labelAudioMode">
+                                    <input type="radio" name="callMode" value="audio">
+                                    <i class="fa-solid fa-microphone"></i>
+                                    <span>Voice Call</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Room Code Input -->
+                        <div class="form-group" id="roomInputGroup">
+                            <label for="roomIdInput">Room Code or Invite Link</label>
+                            <div class="input-with-button">
+                                <input type="text" id="roomIdInput" placeholder="e.g. room-101" autocomplete="off">
+                                <button id="btnGenerateRoom" type="button" title="Generate New Room Code">
+                                    <i class="fa-solid fa-arrows-rotate"></i>
+                                    <span>New</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Launch Call Button -->
+                        <button id="btnStartCall" class="btn-primary" type="button">
+                            <i class="fa-solid fa-phone"></i>
+                            <span id="btnStartCallText">Start Video Call</span>
+                        </button>
+
+                        <div class="tip-box">
+                            <i class="fa-solid fa-lock tip-icon"></i>
+                            <span id="lobbyTipText">
+                                Direct encrypted peer connection. Share the code to talk instantly.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Showcase Section -->
+        <section class="section-container" id="features">
+            <div class="section-header">
+                <span class="section-tag">Key Capabilities</span>
+                <h2 class="section-title">Everything You Need for Seamless Calling</h2>
+                <p class="section-subtitle">Engineered with cutting-edge WebRTC technology for ultra-fast, private communication.</p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3>100% End-to-End Encrypted</h3>
+                    <p>All video and audio streams are encrypted using DTLS and SRTP protocols. No third party—not even our servers—can intercept or view your calls.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3>Direct P2P Performance</h3>
+                    <p>Audio and video travel directly between participants with zero media hops, delivering ultra-low latency, crisp audio, and fluid video frames.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-display"></i>
+                    </div>
+                    <h3>1-Click Screen Sharing</h3>
+                    <p>Share your desktop windows, browser tabs, or presentations smoothly during any call with full aspect-ratio preservation.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-eye-slash"></i>
+                    </div>
+                    <h3>WhatsApp Auto-Hide Controls</h3>
+                    <p>Controls automatically fade away after 3.5 seconds of inactivity, giving you a clean, distraction-free, cinematic video view.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-expand"></i>
+                    </div>
+                    <h3>Smart Fit & Fill Modes</h3>
+                    <p>Never suffer from cut-off mobile faces on widescreen laptops or cropped desktop presentations on smartphones. Toggle between Fit and Fill views effortlessly.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-camera-rotate"></i>
+                    </div>
+                    <h3>Dual-Camera Flip</h3>
+                    <p>Hardware-level camera switching for Android and iOS mobile devices. Seamlessly transition between selfie and rear environments.</p>
+                </div>
+
+                <!-- Feature 7 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-user-xmark"></i>
+                    </div>
+                    <h3>Zero Sign-Up Required</h3>
+                    <p>No phone numbers, email addresses, or passwords needed. Simply create a room link and share it to connect in seconds.</p>
+                </div>
+
+                <!-- Feature 8 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+                    <h3>Universal Device Support</h3>
+                    <p>Runs seamlessly on Chrome, Safari, Firefox, and Edge across Android, iOS, Windows, macOS, and Linux with dynamic viewport adaptation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="section-container" id="how-it-works">
+            <div class="section-header">
+                <span class="section-tag">Simple & Frictionless</span>
+                <h2 class="section-title">How It Works in 3 Easy Steps</h2>
+                <p class="section-subtitle">No accounts, no downloads, no waiting. Start calling in less than 5 seconds.</p>
+            </div>
+
+            <div class="steps-grid">
+                <!-- Step 1 -->
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3>Create a Room</h3>
+                    <p>Pick whether you want a Video or Voice call, click "New" to generate a secure random room code, and enter the call room.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </div>
+                    <h3>Share the Link</h3>
+                    <p>Copy your unique room link and send it to your friend, colleague, or family member via WhatsApp, SMS, or Telegram.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                    <h3>Connect Directly</h3>
+                    <p>As soon as they open the link, your browsers perform a secure peer-to-peer handshake and establish a direct encrypted connection.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security & Privacy Deep Dive Section -->
+        <section class="section-container security-section" id="security">
+            <div class="section-header">
+                <span class="section-tag">Uncompromising Privacy</span>
+                <h2 class="section-title">How Secure Is Your Call?</h2>
+                <p class="section-subtitle">We believe privacy is a fundamental human right. Here is our architectural guarantee.</p>
+            </div>
+
+            <div class="security-pillars">
+                <!-- Pillar 1 -->
+                <div class="security-pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <h3>End-to-End Encryption</h3>
+                    <p>WebRTC enforces mandatory DTLS (Datagram Transport Layer Security) and SRTP (Secure Real-time Transport Protocol). Media packets are encrypted with AES ciphers directly on your device before transmission.</p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="security-pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <h3>Server-Bypass Media Stream</h3>
+                    <p>Our server acts solely as a signaling mediator to exchange connection descriptors. Once connected, video and audio streams flow strictly between you and your peer. The server never handles your video or audio frames.</p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="security-pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <h3>Zero Logs & Zero Recordings</h3>
+                    <p>We do not record calls, store chat transcripts, track IP logs, or keep participant histories. When you close the browser tab, the room memory disappears completely.</p>
+                </div>
+
+                <!-- Pillar 4 -->
+                <div class="security-pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fa-solid fa-user-secret"></i>
+                    </div>
+                    <h3>Zero Personal Data Collection</h3>
+                    <p>No user profiling, no cookies tracking across websites, no telemetry harvesting, and no mandatory app permissions outside camera/mic access during active calls.</p>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="comparison-table-wrapper">
+                <h3 class="comparison-title">Comparison: TVGo Call vs Traditional Apps</h3>
+                <div class="table-responsive">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Privacy & Performance Factor</th>
+                                <th class="highlight-col">TVGo Call</th>
+                                <th>Zoom / Teams</th>
+                                <th>WhatsApp / Messenger</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>App Download Required</td>
+                                <td class="highlight-col"><i class="fa-solid fa-xmark bad-icon"></i> No (Browser native)</td>
+                                <td><i class="fa-solid fa-check"></i> Yes</td>
+                                <td><i class="fa-solid fa-check"></i> Yes</td>
+                            </tr>
+                            <tr>
+                                <td>Account / Registration</td>
+                                <td class="highlight-col"><i class="fa-solid fa-xmark bad-icon"></i> No Account Needed</td>
+                                <td><i class="fa-solid fa-check"></i> Mandatory Email</td>
+                                <td><i class="fa-solid fa-check"></i> Mandatory Phone #</td>
+                            </tr>
+                            <tr>
+                                <td>Server Video Interception</td>
+                                <td class="highlight-col"><i class="fa-solid fa-shield check-icon"></i> Direct P2P Bypass</td>
+                                <td><i class="fa-solid fa-triangle-exclamation warn-icon"></i> Routed through servers</td>
+                                <td><i class="fa-solid fa-shield check-icon"></i> P2P / Relayed</td>
+                            </tr>
+                            <tr>
+                                <td>Conversation History Stored</td>
+                                <td class="highlight-col"><i class="fa-solid fa-xmark bad-icon"></i> Zero Storage</td>
+                                <td><i class="fa-solid fa-check warn-icon"></i> Cloud Recordings / Logs</td>
+                                <td><i class="fa-solid fa-check warn-icon"></i> Cloud Backups</td>
+                            </tr>
+                            <tr>
+                                <td>Open WebRTC Protocol</td>
+                                <td class="highlight-col"><i class="fa-solid fa-check check-icon"></i> Yes (Standard)</td>
+                                <td><i class="fa-solid fa-xmark bad-icon"></i> Proprietary</td>
+                                <td><i class="fa-solid fa-xmark bad-icon"></i> Proprietary</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section-container" id="faq">
+            <div class="section-header">
+                <span class="section-tag">Frequently Asked Questions</span>
+                <h2 class="section-title">Got Questions? We Have Answers.</h2>
+            </div>
+
+            <div class="faq-accordion">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is TVGo Call completely free to use?</span>
+                        <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, 100% free. There are no subscriptions, hidden fees, time limits, or premium paywalls. You can create as many rooms and talk as long as you want.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can anyone else listen to or record my call?</span>
+                        <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No. Your media is encrypted end-to-end between your browser and the other participant's browser using AES-128 / AES-256 keys generated on your device. Only people with your unique room link can join the call.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do I need to download or install any software?</span>
+                        <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Not at all! TVGo Call runs directly in modern mobile and desktop web browsers (Chrome, Safari, Firefox, Edge). Just open the link and tap "Allow" for camera and microphone access.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How does screen sharing work?</span>
+                        <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>On desktop browsers, click the "Share" button in the bottom toolbar. You can select your entire screen, an application window, or a specific browser tab to stream in high resolution.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Does it work on Android and iPhone?</span>
+                        <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes. On Android, open the link in Chrome or your default browser. On iPhone/iPad, open the link in Safari or Chrome. Both front and back camera switching are supported on mobile.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call To Action (Bottom) -->
+        <section class="cta-banner-section">
+            <div class="cta-card">
+                <h2>Ready for Private, Hassle-Free Calling?</h2>
+                <p>No downloads, no accounts. Start a private call now in just one click.</p>
+                <a href="#launch-call" class="btn-primary btn-cta-large">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>Start Your Call Now</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="footer-container">
+                <div class="footer-left">
+                    <a href="/" class="footer-brand">
+                        <img src="/tvgo-call-logo.png" alt="TVGo Call" class="footer-logo-img">
+                    </a>
+                    <p class="footer-tagline">Private, encrypted peer-to-peer audio and video calling.</p>
+                </div>
+
+                <div class="footer-links">
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#security">Security</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+
+                <div class="footer-copy">
+                    &copy; 2026 TVGO Call. Built with WebRTC & DTLS-SRTP Encryption. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- ACTIVE CALL SCREEN (Full Screen WebRTC Room)   -->
+    <!-- ============================================== -->
+    <div id="callScreen" class="screen">
+        <!-- Call Header -->
+        <div class="call-header">
+            <div class="header-left">
+                <div class="call-brand-pill">
+                    <img src="/tvgo-call-logo.png" alt="TVGo Call" class="call-brand-logo">
+                </div>
+                <div class="room-info">
+                    <span class="pulse-dot"></span>
+                    <span id="displayRoomId">Room: --</span>
+                </div>
+                <div class="call-timer-badge" id="callTimerBadge" style="display: none;">
+                    <i class="fa-regular fa-clock"></i>
+                    <span id="callDuration">00:00</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button id="btnToggleFit" class="btn-icon" type="button" title="Toggle Fit or Fill View">
+                    <i class="fa-solid fa-expand"></i>
+                    <span id="fitLabel">Fit</span>
+                </button>
+                <button id="btnCopyLink" class="btn-icon" type="button" title="Copy Call Link">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>Copy Link</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Video & Audio Viewport -->
+        <div class="video-container" id="videoContainer">
+            <!-- Remote Video (Full Screen) -->
+            <div class="video-wrapper remote-wrapper">
+                <video id="remoteVideo" autoplay playsinline style="display: none;"></video>
+
+                <!-- Waiting / Voice Call Placeholder -->
+                <div id="remotePlaceholder" class="video-placeholder">
+                    <div class="avatar-pulse-ring" id="avatarRing">
+                        <div class="avatar">
+                            <i class="fa-solid fa-user icon-avatar" id="avatarIcon"></i>
+                        </div>
+                    </div>
+                    <div class="waiting-text-group">
+                        <p id="remoteStatusText" class="waiting-title">Waiting for participant...</p>
+                        <span id="remoteSubText" class="waiting-subtitle">Share this call link with someone to start talking</span>
+                    </div>
+                    <button id="btnShareInvite" class="btn-invite" type="button">
+                        <i class="fa-solid fa-share-nodes"></i>
+                        <span>Share Invite Link</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Local Video (PiP) -->
+            <div class="video-wrapper local-wrapper" id="localVideoWrapper">
+                <video id="localVideo" autoplay playsinline muted></video>
+                <div id="localPlaceholder" class="local-off" style="display: none;">
+                    <i class="fa-solid fa-video-slash"></i>
+                    <span>Camera Off</span>
+                </div>
+                <span class="user-tag">You</span>
+            </div>
+        </div>
+
+        <!-- Floating Controls Toolbar (With WhatsApp-Style Auto-Hide) -->
+        <div class="controls-toolbar" id="controlsToolbar">
+            <!-- Mic Mute / Unmute -->
+            <button id="btnToggleMic" class="control-btn" type="button" title="Mute/Unmute Mic">
+                <span class="icon-slot">
+                    <i class="fa-solid fa-microphone mic-on-icon"></i>
+                    <i class="fa-solid fa-microphone-slash mic-off-icon" style="display: none;"></i>
+                </span>
+                <span class="label">Mic</span>
+            </button>
+
+            <!-- Camera Toggle -->
+            <button id="btnToggleCam" class="control-btn" type="button" title="Turn Camera On/Off">
+                <span class="icon-slot">
+                    <i class="fa-solid fa-video cam-on-icon"></i>
+                    <i class="fa-solid fa-video-slash cam-off-icon" style="display: none;"></i>
+                </span>
+                <span class="label">Camera</span>
+            </button>
+
+            <!-- Desktop Screen Share (Desktop Only) -->
+            <button id="btnScreenShare" class="control-btn desktop-only-btn" type="button" title="Share Screen">
+                <span class="icon-slot">
+                    <i class="fa-solid fa-display"></i>
+                </span>
+                <span class="label">Share</span>
+            </button>
+
+            <!-- Camera Flip (Mobile & Multi-camera) -->
+            <button id="btnSwitchCamera" class="control-btn" type="button" title="Flip Camera">
+                <span class="icon-slot">
+                    <i class="fa-solid fa-camera-rotate"></i>
+                </span>
+                <span class="label">Flip</span>
+            </button>
+
+            <!-- End Call -->
+            <button id="btnEndCall" class="control-btn end-btn" type="button" title="End Call">
+                <span class="icon-slot">
+                    <i class="fa-solid fa-phone-slash"></i>
+                </span>
+                <span class="label">End</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Scripts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/client.js"></script>
+</body>
+</html>
